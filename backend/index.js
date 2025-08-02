@@ -14,7 +14,11 @@ app.listen(port,()=>{
 
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: 'https://cybermindworksjobupdates.onrender.com',
+  methods: ['GET', 'POST', 'PUT','PATCH','DELETE'],
+  credentials: true
+}));
 
 const DB_URL = process.env.MONGO_URL;
 console.log(DB_URL)
@@ -31,18 +35,16 @@ async function main() {
 
 
 app.get("/",(req,res)=>{
-    res.json("Working")
+    res.redirect("https://cybermindworksjobupdates.onrender.com");
 })
 
 app.get("/jobs",async(req,res)=>{
     const data = await Job.find({});
-    console.log(data)
     res.json(data);
 })
 
 app.post("/add",async(req,res)=>{
     const savedData = await new Job(req.body.data);
     savedData.save();
-    console.log(savedData);
     res.json("Done")
 })
