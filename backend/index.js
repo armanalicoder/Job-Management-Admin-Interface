@@ -1,0 +1,48 @@
+const express = require("express");
+const app = express();
+const port = 8000;
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const Job = require("./models/jobModel");
+require('dotenv').config()
+
+app.listen(port,()=>{
+    console.log("app is listening on port 8000");
+})
+
+
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
+app.use(cors());
+
+const DB_URL = process.env.MONGO_URL;
+console.log(DB_URL)
+main().then(()=>{
+    console.log("Connection Succesfull")
+}).catch((e)=>{
+    console.log("DB Connection Failed",e);
+})
+
+
+async function main() {
+    await mongoose.connect(DB_URL)
+}
+
+
+app.get("/",(req,res)=>{
+    res.send("working well");
+})
+
+app.get("/jobs",async(req,res)=>{
+    const data = await Job.find({});
+    console.log(data)
+    res.json(data);
+})
+
+app.post("/add",async(req,res)=>{
+    const savedData = await new Job(req.body.data);
+    savedData.save();
+    console.log(savedData);
+    res.json("Done")
+})
