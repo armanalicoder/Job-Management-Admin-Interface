@@ -32,7 +32,7 @@ function NewJob({ isOpen, setIsOpen }) {
       maxsalary: Number(data.maxsalary),
     };
     await delay(2);
-    await axios.post("http://localhost:8000/add", {
+    await axios.post("https://job-management-admin-interface-backend.onrender.com/add", {
       data: cleanedData,
     });
     toast.success("Job Listed Successfully");

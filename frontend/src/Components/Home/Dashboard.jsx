@@ -12,7 +12,7 @@ function Dashboard() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/jobs")
+      .get("https://job-management-admin-interface-backend.onrender.com/jobs")
       .then((res) => setJobData(res.data))
       .catch((e) => console.log("Unable to fetch jobs ", e));
   }, []);

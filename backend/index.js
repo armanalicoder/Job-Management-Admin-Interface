@@ -31,7 +31,7 @@ async function main() {
 
 
 app.get("/",(req,res)=>{
-    res.send("working well");
+    res.json("Working")
 })
 
 app.get("/jobs",async(req,res)=>{
