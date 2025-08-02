@@ -37,7 +37,7 @@ function AdminLogin({adminLogin,setAdminLogin}) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-[600] text-gray-700">
-                Admin Username <span className="text-red-500">*</span>
+                Admin Username(Use - admin) <span className="text-red-500">*</span>
               </label>
               <input
                 {...register("username", {
@@ -58,7 +58,7 @@ function AdminLogin({adminLogin,setAdminLogin}) {
             </div>
              <div>
               <label className="block text-sm font-[600] text-gray-700">
-                Admin Password <span className="text-red-500">*</span>
+                Admin Password(Use - 1234) <span className="text-red-500">*</span>
               </label>
               <input
                 {...register("password", {
